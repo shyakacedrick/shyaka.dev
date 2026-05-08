@@ -1,0 +1,44 @@
+/* Hide native cursor site-wide */
+:global(html:has(.ring)) {
+  cursor: none;
+}
+
+:global(html:has(.ring) a),
+:global(html:has(.ring) button) {
+  cursor: none;
+}
+
+.ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid var(--color-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.7;
+  transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Hover state — ring expands */
+:global([data-cursor-hover]) .ring,
+:global(html[data-cursor-hover]) .ring {
+  width: 56px;
+  height: 56px;
+  opacity: 1;
+  border-color: var(--color-text);
+}

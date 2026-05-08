@@ -1,0 +1,66 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-bg: #0D0D10;
+  --color-text: #EAEAEC;
+  --color-accent: #F59430;
+  --color-surface: #141417;
+  --color-border: rgba(255, 255, 255, 0.07);
+  --color-text-muted: rgba(234, 234, 236, 0.48);
+  --color-text-body: rgba(234, 234, 236, 0.54);
+  --color-text-subtle: rgba(234, 234, 236, 0.3);
+  --color-tag-bg: rgba(255, 255, 255, 0.04);
+  --color-navbar-scrolled: rgba(13, 13, 16, 0.84);
+  --color-overlay: #0D0D10;
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+[data-theme='light'] {
+  --color-bg: #FFFFFF;
+  --color-text: #131316;
+  --color-accent: #D97400;
+  --color-surface: #F4F4F6;
+  --color-border: rgba(0, 0, 0, 0.07);
+  --color-text-muted: rgba(19, 19, 22, 0.48);
+  --color-text-body: rgba(19, 19, 22, 0.6);
+  --color-text-subtle: rgba(19, 19, 22, 0.36);
+  --color-tag-bg: rgba(0, 0, 0, 0.04);
+  --color-navbar-scrolled: rgba(255, 255, 255, 0.92);
+  --color-overlay: #FFFFFF;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: none;
+  font-family: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}

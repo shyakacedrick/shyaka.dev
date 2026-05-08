@@ -1,0 +1,7 @@
+.app {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  position: relative;
+  z-index: 1;
+  transition: background-color 0.35s ease;
+}

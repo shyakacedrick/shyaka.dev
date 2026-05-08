@@ -1,0 +1,146 @@
+.work {
+  padding: 6rem 6vw 8rem;
+}
+
+/* ── Section header ── */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.sectionSub {
+  font-size: 0.95rem;
+  color: var(--color-text-subtle);
+  max-width: 300px;
+  line-height: 1.6;
+  text-align: right;
+}
+
+/* ── 2-column grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+/* ── Card ── */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2.5rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 1.25rem;
+  transition: border-color 0.25s ease, transform 0.25s ease, background-color 0.25s ease;
+  cursor: default;
+}
+
+.card:hover {
+  border-color: rgba(255, 157, 46, 0.3);
+  transform: translateY(-4px);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.category {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  padding: 0.3rem 0.75rem;
+  border: 1px solid rgba(255, 157, 46, 0.3);
+  border-radius: 999px;
+}
+
+.year {
+  font-size: 0.8rem;
+  color: var(--color-text-subtle);
+  font-weight: 500;
+}
+
+.title {
+  font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--color-text);
+}
+
+.description {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-text-body);
+  flex: 1;
+}
+
+/* ── Card footer ── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+  flex-wrap: wrap;
+}
+
+.techList {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.techTag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.25rem 0.6rem;
+  background-color: var(--color-tag-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  color: var(--color-text-muted);
+}
+
+.viewLink {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  transition: opacity 0.2s ease, letter-spacing 0.2s ease;
+}
+
+.viewLink:hover {
+  opacity: 0.75;
+  letter-spacing: 0.08em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionSub {
+    text-align: left;
+  }
+}

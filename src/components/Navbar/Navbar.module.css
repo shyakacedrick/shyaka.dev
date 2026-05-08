@@ -1,0 +1,280 @@
+/* ══════════════════════════════
+   NAVBAR BAR
+══════════════════════════════ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.6rem 6vw;
+  transition: padding 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.scrolled {
+  padding: 1rem 6vw;
+  background-color: var(--color-navbar-scrolled);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom-color: var(--color-border);
+}
+
+/* Keep bar visible above the mobile overlay */
+.menuIsOpen {
+  background-color: var(--color-navbar-scrolled);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom-color: var(--color-border);
+}
+
+/* ── Logo ── */
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  text-transform: lowercase;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+  z-index: 201;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+.logo:hover { opacity: 0.7; }
+
+.logoDev {
+  color: var(--color-accent);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* ── Desktop nav ── */
+.desktopNav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.navLink {
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--color-text-muted);
+  position: relative;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  transition: color 0.18s ease, background-color 0.18s ease;
+  white-space: nowrap;
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 0.85rem;
+  right: 0.85rem;
+  height: 1.5px;
+  background-color: var(--color-accent);
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.22s ease;
+}
+
+.navLink:hover {
+  color: var(--color-text);
+  background-color: var(--color-tag-bg);
+}
+
+.navLink:hover::after { transform: scaleX(1); }
+
+/* ── Right controls group ── */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  z-index: 201;
+}
+
+/* ── Theme toggle ── */
+.themeToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+  flex-shrink: 0;
+}
+
+.themeToggle:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background-color: rgba(245, 148, 48, 0.08);
+}
+
+/* ── Hamburger (hidden on desktop) ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 6px 4px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--color-text);
+  border-radius: 2px;
+  transition: transform 0.28s ease, opacity 0.28s ease, width 0.28s ease;
+  transform-origin: center;
+}
+
+.hamburgerOpen span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburgerOpen span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburgerOpen span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ══════════════════════════════
+   MOBILE OVERLAY
+══════════════════════════════ */
+.mobileNav {
+  display: none; /* shown only via media query */
+  position: fixed;
+  inset: 0;
+  z-index: 199;
+  background-color: var(--color-overlay);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  flex-direction: column;
+  justify-content: center;
+  padding: 6rem 6vw 3rem;
+}
+
+.mobileList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.mobileLink {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  color: var(--color-text);
+  line-height: 1.4;
+  padding: 0.6rem 0.5rem;
+  border-radius: 6px;
+  transition: color 0.18s ease, background-color 0.18s ease;
+}
+
+.mobileLink:hover { color: var(--color-accent); background-color: var(--color-tag-bg); }
+
+.mobileLinkNum {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--color-accent);
+  font-variant-numeric: tabular-nums;
+  align-self: center;
+  min-width: 20px;
+}
+
+/* Overlay footer */
+.mobileFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.mobileFooterLabel {
+  font-size: 0.8rem;
+  color: var(--color-text-subtle);
+  font-weight: 500;
+}
+
+.themeToggleMobile {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font-primary);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.themeToggleMobile:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ══════════════════════════════
+   RESPONSIVE BREAKPOINTS
+══════════════════════════════ */
+
+/* ── Large desktop (1280px+) — more breathing room ── */
+@media (min-width: 1280px) {
+  .navbar { padding: 1.75rem 7vw; }
+  .scrolled { padding: 1.1rem 7vw; }
+  .menuIsOpen { padding: 1.75rem 7vw; }
+  .desktopNav { gap: 0.35rem; }
+  .navLink { font-size: 0.95rem; }
+}
+
+/* ── Tablet landscape (1024px – 1279px) — same layout, slightly tighter ── */
+@media (max-width: 1279px) and (min-width: 768px) {
+  .desktopNav { gap: 0.2rem; }
+  .navLink { font-size: 0.88rem; padding: 0.4rem 0.7rem; }
+}
+
+/* ── Tablet portrait & mobile (< 768px) — overlay menu ── */
+@media (max-width: 767px) {
+  .hamburger { display: flex; }
+
+  /* Hide desktop nav completely */
+  .desktopNav { display: none; }
+
+  /* Hide the bar-level theme toggle — it's duplicated inside the overlay */
+  .themeToggle { display: none; }
+
+  /* Show mobile overlay when rendered */
+  .mobileNav { display: flex; }
+
+  .navbar { padding: 1.25rem 5vw; }
+  .scrolled { padding: 1rem 5vw; }
+  .menuIsOpen { padding: 1.25rem 5vw; }
+}
+
+/* ── Small phones (< 380px) ── */
+@media (max-width: 379px) {
+  .logo { font-size: 1.1rem; }
+  .mobileLink { font-size: 1rem; }
+  .navbar,
+  .scrolled,
+  .menuIsOpen { padding-left: 4vw; padding-right: 4vw; }
+}
+
