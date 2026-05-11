@@ -61,7 +61,7 @@ const Navbar = ({ theme, onToggleTheme }) => {
 
         {/* Logo */}
         <a href="/" className={styles.logo} onClick={close}>
-          shyaka<span className={styles.logoDev}>.dev</span>
+          shyaka<span className={styles.logoDev}>.pro</span>
         </a>
 
         {/* Desktop nav (hidden on mobile via CSS) */}

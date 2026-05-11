@@ -22,13 +22,14 @@ const ServiceCard = ({ service, index, activeIndex, layoutMode, onSelect }) => {
   const isActive = index === activeIndex
   const isMobile = layoutMode === 'mobile'
   const isTablet = layoutMode === 'tablet'
-  const spacing = isMobile ? 170 : isTablet ? 220 : 260
-  const sideScale = isMobile ? 0.84 : 0.8
-  const activeScale = isMobile ? 1 : 1.1
-  const hiddenThreshold = isMobile ? 1 : 2
+  const isLandscape = layoutMode === 'landscape'
+  const spacing = isLandscape ? 170 : isMobile ? 170 : isTablet ? 220 : 260
+  const sideScale = isLandscape ? 0.76 : isMobile ? 0.84 : 0.8
+  const activeScale = isLandscape ? 0.96 : isMobile ? 1 : 1.1
+  const hiddenThreshold = isMobile || isLandscape ? 1 : 2
 
-  const rotateY = isMobile ? 0 : offset === 0 ? 0 : offset > 0 ? -45 : 45
-  const z = isActive ? 0 : isMobile ? -90 : -200
+  const rotateY = isMobile ? 0 : offset === 0 ? 0 : offset > 0 ? (isLandscape ? -30 : -45) : (isLandscape ? 30 : 45)
+  const z = isActive ? 0 : isMobile ? -90 : isLandscape ? -110 : -200
 
   // rotateX-only tilt — carousel controls rotateY, so we only tilt fore/aft
   const { rotateX, glare, glareOpacity, onMouseMove, onMouseLeave } = useTilt(10)
@@ -101,6 +102,13 @@ const Services = () => {
 
   useEffect(() => {
     const updateLayoutMode = () => {
+      const isLandscape = window.innerWidth > window.innerHeight && window.innerHeight <= 620
+
+      if (isLandscape) {
+        setLayoutMode('landscape')
+        return
+      }
+
       if (window.innerWidth < 640) {
         setLayoutMode('mobile')
         return

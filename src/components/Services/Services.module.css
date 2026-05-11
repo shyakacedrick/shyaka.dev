@@ -324,3 +324,139 @@
     height: 0.6rem;
   }
 }
+
+@media (orientation: landscape) and (max-height: 620px) {
+  .spaceSection {
+    min-height: 100svh;
+    padding: 2rem 4vw;
+    justify-content: center;
+  }
+
+  .header {
+    max-width: 980px;
+    margin-bottom: 1rem;
+  }
+
+  .sectionLabel {
+    margin-bottom: 0.45rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+  }
+
+  .labelLine {
+    width: 1.8rem;
+  }
+
+  .heading {
+    font-size: clamp(1.45rem, 4vw, 2.25rem);
+  }
+
+  .carouselStage {
+    height: clamp(210px, 58vh, 300px);
+  }
+
+  .cardsWrapper {
+    width: clamp(210px, 34vw, 260px);
+    height: clamp(200px, 54vh, 285px);
+  }
+
+  .card {
+    padding: 1rem 1.05rem;
+    border-radius: 18px;
+  }
+
+  .cardHeader {
+    display: none;
+  }
+
+  .cardTitle {
+    font-size: clamp(1.08rem, 2.6vw, 1.38rem);
+    line-height: 1.12;
+    margin-bottom: 0.55rem;
+  }
+
+  .pillGrid {
+    gap: 6px;
+    margin-bottom: 0.7rem;
+  }
+
+  .pill {
+    padding: 3px 8px;
+    font-size: 0.64rem;
+  }
+
+  .cardDesc {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+
+  .rowCta {
+    gap: 6px;
+    font-size: 0.8rem;
+  }
+
+  .navControls {
+    margin-top: 1rem;
+    gap: 0.65rem;
+  }
+
+  .navBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .navDots {
+    gap: 0.38rem;
+  }
+
+  .navDot {
+    width: 0.52rem;
+    height: 0.52rem;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 420px) {
+  .spaceSection {
+    padding: 1.5rem 4vw;
+  }
+
+  .carouselStage {
+    height: clamp(190px, 58vh, 240px);
+  }
+
+  .cardsWrapper {
+    width: clamp(200px, 32vw, 240px);
+    height: clamp(185px, 52vh, 230px);
+  }
+
+  .cardDesc {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    font-size: 0.74rem;
+  }
+
+  .cardTitle {
+    font-size: clamp(0.98rem, 2.4vw, 1.18rem);
+    margin-bottom: 0.45rem;
+  }
+
+  .pill {
+    font-size: 0.58rem;
+    padding: 3px 7px;
+  }
+
+  .rowCta {
+    font-size: 0.74rem;
+  }
+
+  .navControls {
+    margin-top: 0.75rem;
+  }
+}
