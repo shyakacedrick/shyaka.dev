@@ -54,20 +54,20 @@
 
 /* Light mode: soften blobs */
 :global([data-theme='light']) .blob1 {
-  background: radial-gradient(circle, rgba(217, 116, 0, 0.13) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(166, 95, 26, 0.08) 0%, transparent 65%);
 }
 
 :global([data-theme='light']) .blob2 {
-  background: radial-gradient(circle, rgba(217, 116, 0, 0.09) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(166, 95, 26, 0.05) 0%, transparent 65%);
 }
 
 :global([data-theme='light']) .scanLine {
   background: linear-gradient(
     to right,
     transparent 0%,
-    rgba(217, 116, 0, 0.2) 30%,
-    rgba(217, 116, 0, 0.38) 50%,
-    rgba(217, 116, 0, 0.2) 70%,
+    rgba(166, 95, 26, 0.12) 30%,
+    rgba(166, 95, 26, 0.22) 50%,
+    rgba(166, 95, 26, 0.12) 70%,
     transparent 100%
   );
 }

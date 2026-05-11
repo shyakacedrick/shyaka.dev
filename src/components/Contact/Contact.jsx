@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { useTilt } from '../../hooks/useTilt'
 import styles from './Contact.module.css'
 
 /* ─── contact info sidebar data ─── */
@@ -234,6 +235,8 @@ const ContactForm = () => {
 const Contact = () => {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, amount: 0.15 })
+  const leftTilt  = useTilt(6)
+  const rightTilt = useTilt(6)
 
   return (
     <section className={styles.contact} id="contact" ref={ref}>
@@ -241,9 +244,13 @@ const Contact = () => {
       {/* Heading block */}
       <motion.div
         className={styles.header}
-        initial={{ opacity: 0, y: 36 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ opacity: 0, x: -56, scale: 0.95 }}
+        whileInView={{ opacity: 1, x: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1] }}
+        style={{ rotateX: leftTilt.rotateX, rotateY: leftTilt.rotateY, transformPerspective: 1400 }}
+        onMouseMove={leftTilt.onMouseMove}
+        onMouseLeave={leftTilt.onMouseLeave}
       >
         <div className={styles.sectionLabel}>
           <span className={styles.labelLine} />
@@ -266,9 +273,10 @@ const Contact = () => {
               key={l.label}
               href={l.href}
               className={styles.contactLink}
-              initial={{ opacity: 0, x: -16 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, x: -24, rotateY: 8 }}
+              whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.55, delay: 0.2 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
             >
               <span className={styles.linkLabel}>{l.label}</span>
               <span className={styles.linkValue}>{l.value}</span>
@@ -276,19 +284,24 @@ const Contact = () => {
             </motion.a>
           ))}
         </div>
+        <motion.div className={styles.glare} style={{ background: leftTilt.glare, opacity: leftTilt.glareOpacity }} />
       </motion.div>
 
       {/* Form */}
       <motion.div
         className={styles.formWrap}
-        initial={{ opacity: 0, y: 40 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.75, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ opacity: 0, x: 56, scale: 0.95 }}
+        whileInView={{ opacity: 1, x: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.1 }}
+        transition={{ duration: 0.85, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+        style={{ rotateX: rightTilt.rotateX, rotateY: rightTilt.rotateY, transformPerspective: 1400 }}
+        onMouseMove={rightTilt.onMouseMove}
+        onMouseLeave={rightTilt.onMouseLeave}
       >
         <ContactForm />
+        <motion.div className={styles.glare} style={{ background: rightTilt.glare, opacity: rightTilt.glareOpacity }} />
       </motion.div>
     </section>
   )
 }
-
 export default Contact

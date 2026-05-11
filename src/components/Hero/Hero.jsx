@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useTilt } from '../../hooks/useTilt'
 import styles from './Hero.module.css'
 
 const TICKER_ITEMS = [
@@ -20,48 +21,63 @@ const containerVariants = {
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+  hidden: { opacity: 0, y: 28, x: -24, rotateY: 6 },
+  visible: { opacity: 1, y: 0, x: 0, rotateY: 0, transition: { duration: 0.75, ease: [0.22, 1, 0.36, 1] } },
 }
 
-const VisualCard = () => (
-  <div className={styles.visualCard} aria-hidden="true">
-    {/* Corner brackets */}
+const VisualCard = () => {
+  const { rotateX, rotateY, glare, glareOpacity, onMouseMove, onMouseLeave } = useTilt(12)
+
+  return (
+  <motion.div
+    className={styles.visualCard}
+    aria-hidden="true"
+    style={{ rotateX, rotateY, transformPerspective: 1000 }}
+    onMouseMove={onMouseMove}
+    onMouseLeave={onMouseLeave}
+  >
+    {/* Corner brackets — outside clip zone so they sit on the edge */}
     <span className={`${styles.corner} ${styles.tl}`} />
     <span className={`${styles.corner} ${styles.tr}`} />
     <span className={`${styles.corner} ${styles.bl}`} />
     <span className={`${styles.corner} ${styles.br}`} />
 
-    {/* Dot-grid texture */}
-    <div className={styles.cardGrid} />
+    {/* Inner clip zone — overflow:hidden only here, for glare containment */}
+    <div className={styles.visualInner}>
+      {/* Dot-grid texture */}
+      <div className={styles.cardGrid} />
 
-    {/* Center glow */}
-    <motion.div
-      className={styles.cardGlow}
-      animate={{ opacity: [0.5, 0.95, 0.5], scale: [0.94, 1.06, 0.94] }}
-      transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-    />
+      {/* Center glow */}
+      <motion.div
+        className={styles.cardGlow}
+        animate={{ opacity: [0.5, 0.95, 0.5], scale: [0.94, 1.06, 0.94] }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
+      />
 
-    {/* Outer orbit ring */}
-    <motion.div
-      className={styles.ring}
-      animate={{ rotate: 360 }}
-      transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
-    />
+      {/* Outer orbit ring */}
+      <motion.div
+        className={styles.ring}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
+      />
 
-    {/* Inner orbit ring */}
-    <motion.div
-      className={styles.ringInner}
-      animate={{ rotate: -360 }}
-      transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
-    />
+      {/* Inner orbit ring */}
+      <motion.div
+        className={styles.ringInner}
+        animate={{ rotate: -360 }}
+        transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
+      />
 
-    {/* Avatar */}
-    <div className={styles.cardAvatar}>
-      <span className={styles.cardInitials}>SC</span>
+      {/* Avatar */}
+      <div className={styles.cardAvatar}>
+        <span className={styles.cardInitials}>SC</span>
+      </div>
+
+      {/* Glare — clipped by visualInner */}
+      <motion.div className={styles.glare} style={{ background: glare, opacity: glareOpacity }} />
     </div>
 
-    {/* Floating tech tags */}
+    {/* Floating tech tags — outside clip zone, they can overflow the card edges */}
     {TAG_POSITIONS.map(({ label, style }, i) => (
       <motion.div
         key={label}
@@ -75,8 +91,9 @@ const VisualCard = () => (
     ))}
 
     <div className={styles.yearLabel}>©2026</div>
-  </div>
-)
+  </motion.div>
+  )
+}
 
 const Hero = () => (
   <section className={styles.hero}>
@@ -92,7 +109,8 @@ const Hero = () => (
         className={styles.content}
         variants={containerVariants}
         initial="hidden"
-        animate="visible"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
       >
         <motion.div className={styles.greeting} variants={itemVariants}>
           <span className={styles.wave}>👋</span>
@@ -101,7 +119,7 @@ const Hero = () => (
 
         <motion.div className={styles.badge} variants={itemVariants}>
           <span className={styles.dot} />
-          Available for work — Turkana, Kenya
+          Available for work — Nairobi, Kenya
         </motion.div>
 
         <motion.div className={styles.headingBlock} variants={itemVariants}>
@@ -131,7 +149,7 @@ const Hero = () => (
         <motion.div className={styles.meta} variants={itemVariants}>
           <span className={styles.metaItem}>
             <span className={styles.metaDot} />
-            Based in Nairobi
+            Nairobi, Kenya
           </span>
           <span className={styles.metaDivider}>/</span>
           <span className={styles.metaItem}>Est. 2020</span>
@@ -141,9 +159,10 @@ const Hero = () => (
       {/* Right: visual card */}
       <motion.div
         className={styles.visual}
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.9, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ opacity: 0, x: 60, scale: 0.88, rotateY: -12 }}
+        whileInView={{ opacity: 1, x: 0, scale: 1, rotateY: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.85, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
       >
         <VisualCard />
       </motion.div>

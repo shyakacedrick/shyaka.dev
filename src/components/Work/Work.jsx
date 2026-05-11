@@ -1,17 +1,27 @@
 import { motion } from 'framer-motion'
 import { useInView } from '../../hooks/useAnimation'
+import { useTilt } from '../../hooks/useTilt'
 import styles from './Work.module.css'
 
 const cardVariants = {
-  hidden: { opacity: 0, y: 48 },
+  hidden: (i) => ({
+    opacity: 0,
+    y: 20,
+    x: i % 2 === 0 ? -48 : 48,
+    scale: 0.93,
+  }),
   visible: (i) => ({
     opacity: 1,
     y: 0,
-    transition: { duration: 0.65, delay: i * 0.12, ease: [0.22, 1, 0.36, 1] },
+    x: 0,
+    scale: 1,
+    transition: { duration: 0.75, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] },
   }),
 }
 
 const ProjectCard = ({ project, index }) => {
+  const { rotateX, rotateY, glare, glareOpacity, onMouseMove, onMouseLeave } = useTilt(12)
+
   return (
     <motion.article
       className={styles.card}
@@ -20,7 +30,9 @@ const ProjectCard = ({ project, index }) => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.15 }}
       custom={index}
-      whileHover={{ y: -6, transition: { duration: 0.25 } }}
+      style={{ rotateX, rotateY, transformPerspective: 1000 }}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
     >
       <div className={styles.cardHeader}>
         <span className={styles.category}>{project.category}</span>
@@ -40,6 +52,7 @@ const ProjectCard = ({ project, index }) => {
           View →
         </a>
       </div>
+      <motion.div className={styles.glare} style={{ background: glare, opacity: glareOpacity }} />
     </motion.article>
   )
 }
@@ -51,10 +64,10 @@ const Work = ({ projects }) => {
     <section className={styles.work} id="work">
       <motion.div
         className={styles.header}
-        ref={ref}
-        initial={{ opacity: 0, y: 30 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ opacity: 0, y: -40, rotateX: -10, scale: 0.95 }}
+        whileInView={{ opacity: 1, y: 0, rotateX: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
       >
         <h2 className={styles.sectionTitle}>Selected Work</h2>
         <p className={styles.sectionSub}>

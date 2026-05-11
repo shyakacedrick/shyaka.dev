@@ -1,0 +1,48 @@
+.scrollProgress {
+  position: fixed;
+  top: 50%;
+  right: max(1.25rem, 2vw);
+  z-index: 120;
+  width: 32px;
+  height: 180px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.track,
+.active {
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+.track {
+  stroke: var(--color-border);
+}
+
+.active {
+  stroke: var(--color-accent);
+  filter: drop-shadow(0 0 8px var(--color-accent-glow));
+}
+
+.cap {
+  fill: var(--color-surface);
+  stroke: var(--color-border);
+  stroke-width: 1.5;
+}
+
+.dot {
+  fill: var(--color-accent);
+  filter: drop-shadow(0 0 10px var(--color-accent-glow));
+}
+
+@media (max-width: 960px) {
+  .scrollProgress {
+    display: none;
+  }
+}

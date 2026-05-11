@@ -6,8 +6,10 @@ import About from './components/About/About'
 import Services from './components/Services/Services'
 import Work from './components/Work/Work'
 import Contact from './components/Contact/Contact'
+import Footer from './components/Footer/Footer'
 import Background from './components/Background/Background'
 import Cursor from './components/Cursor/Cursor'
+import ScrollProgress from './components/ScrollProgress/ScrollProgress'
 import projects from './services/projects'
 import styles from './App.module.css'
 
@@ -34,6 +36,7 @@ const App = () => {
     <div className={styles.app}>
       <Background />
       <Cursor />
+      <ScrollProgress />
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
       <Hero />
       <Stats />
@@ -41,6 +44,7 @@ const App = () => {
       <Services />
       <Work projects={projectList} />
       <Contact />
+      <Footer />
     </div>
   )
 }

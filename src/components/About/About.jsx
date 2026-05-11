@@ -1,14 +1,15 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import about from '../../services/about'
+import { useTilt } from '../../hooks/useTilt'
 import styles from './About.module.css'
 
 /* ─── animation presets ─── */
 const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 36 },
-  whileInView: { opacity: 1, y: 0 },
+  initial: { opacity: 0, y: 28, x: 36, rotateY: -6 },
+  whileInView: { opacity: 1, y: 0, x: 0, rotateY: 0 },
   viewport: { once: true, amount: 0.2 },
-  transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+  transition: { duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] },
 })
 
 /* ─── Skill bar ─── */
@@ -42,13 +43,19 @@ const SkillBar = ({ label, level, index }) => {
 }
 
 /* ─── Portrait card ─── */
-const PortraitCard = () => (
+const PortraitCard = () => {
+  const { rotateX, rotateY, glare, glareOpacity, onMouseMove, onMouseLeave } = useTilt(14)
+
+  return (
   <motion.div
     className={styles.portraitWrap}
-    initial={{ opacity: 0, scale: 0.94, y: 30 }}
-    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+    initial={{ opacity: 0, x: -60, scale: 0.92 }}
+    whileInView={{ opacity: 1, x: 0, scale: 1 }}
     viewport={{ once: true, amount: 0.3 }}
     transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+    style={{ rotateX, rotateY, transformPerspective: 1100 }}
+    onMouseMove={onMouseMove}
+    onMouseLeave={onMouseLeave}
   >
     {/* Decorative corner brackets */}
     <span className={`${styles.bracket} ${styles.tl}`} />
@@ -86,8 +93,10 @@ const PortraitCard = () => (
       animate={{ rotate: 360 }}
       transition={{ duration: 22, repeat: Infinity, ease: 'linear' }}
     />
+    <motion.div className={styles.glare} style={{ background: glare, opacity: glareOpacity }} />
   </motion.div>
-)
+  )
+}
 
 /* ─── Main section ─── */
 const About = () => {
