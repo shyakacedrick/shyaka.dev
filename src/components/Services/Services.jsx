@@ -23,9 +23,9 @@ const ServiceCard = ({ service, index, activeIndex, layoutMode, onSelect }) => {
   const isMobile = layoutMode === 'mobile'
   const isTablet = layoutMode === 'tablet'
   const isLandscape = layoutMode === 'landscape'
-  const spacing = isLandscape ? 170 : isMobile ? 170 : isTablet ? 220 : 260
-  const sideScale = isLandscape ? 0.76 : isMobile ? 0.84 : 0.8
-  const activeScale = isLandscape ? 0.96 : isMobile ? 1 : 1.1
+  const spacing = isLandscape ? 205 : isMobile ? 170 : isTablet ? 220 : 260
+  const sideScale = isLandscape ? 0.8 : isMobile ? 0.84 : 0.8
+  const activeScale = isLandscape ? 1.04 : isMobile ? 1 : 1.1
   const hiddenThreshold = isMobile || isLandscape ? 1 : 2
 
   const rotateY = isMobile ? 0 : offset === 0 ? 0 : offset > 0 ? (isLandscape ? -30 : -45) : (isLandscape ? 30 : 45)

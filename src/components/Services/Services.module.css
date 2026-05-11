@@ -352,16 +352,16 @@
   }
 
   .carouselStage {
-    height: clamp(210px, 58vh, 300px);
+    height: clamp(245px, 65vh, 350px);
   }
 
   .cardsWrapper {
-    width: clamp(210px, 34vw, 260px);
-    height: clamp(200px, 54vh, 285px);
+    width: clamp(250px, 40vw, 320px);
+    height: clamp(235px, 60vh, 335px);
   }
 
   .card {
-    padding: 1rem 1.05rem;
+    padding: 1.15rem 1.25rem;
     border-radius: 18px;
   }
 
@@ -370,7 +370,7 @@
   }
 
   .cardTitle {
-    font-size: clamp(1.08rem, 2.6vw, 1.38rem);
+    font-size: clamp(1.2rem, 2.8vw, 1.52rem);
     line-height: 1.12;
     margin-bottom: 0.55rem;
   }
@@ -382,7 +382,7 @@
 
   .pill {
     padding: 3px 8px;
-    font-size: 0.64rem;
+    font-size: 0.68rem;
   }
 
   .cardDesc {
@@ -391,14 +391,14 @@
     line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    font-size: 0.8rem;
+    font-size: 0.84rem;
     line-height: 1.5;
     margin-bottom: 0.75rem;
   }
 
   .rowCta {
     gap: 6px;
-    font-size: 0.8rem;
+    font-size: 0.84rem;
   }
 
   .navControls {
@@ -428,12 +428,12 @@
   }
 
   .carouselStage {
-    height: clamp(190px, 58vh, 240px);
+    height: clamp(220px, 62vh, 280px);
   }
 
   .cardsWrapper {
-    width: clamp(200px, 32vw, 240px);
-    height: clamp(185px, 52vh, 230px);
+    width: clamp(235px, 36vw, 280px);
+    height: clamp(215px, 58vh, 270px);
   }
 
   .cardDesc {
