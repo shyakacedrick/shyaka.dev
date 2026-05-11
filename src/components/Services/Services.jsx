@@ -78,6 +78,17 @@ const ServiceCard = ({ service, index, activeIndex, layoutMode, onSelect }) => {
 
         <p className={styles.cardDesc}>{service.description}</p>
 
+        {isLandscape && (
+          <div className={styles.landscapeInfo}>
+            {service.tagline && <p className={styles.infoTagline}>{service.tagline}</p>}
+            <div className={styles.infoList}>
+              {service.deliverables?.slice(2, 4).map((item) => (
+                <span key={item}>{item}</span>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* CTA from your previous code */}
         <motion.a
           href="mailto:hello@portfolio.dev"
